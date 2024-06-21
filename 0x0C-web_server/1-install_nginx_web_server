@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Update package list and install Nginx
+apt-get update -y
+apt-get install -y nginx
+
+# Create a custom HTML file to be served
+echo "Hello World!" > /var/www/html/index.html
+
+# Start Nginx without using systemctl
+service nginx start
+
+# Ensure Nginx restarts if the server is rebooted
+update-rc.d nginx defaults
+
+# Allow port 80 through the firewall
+ufw allow 80
+
